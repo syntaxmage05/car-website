@@ -105,13 +105,3 @@ bundle exec brakeman -A
 - If assets fail to compile, verify Node/Yarn versions and check `package.json` scripts.
 - If credentials are missing in CI, set `RAILS_MASTER_KEY` or supply `credentials.yml.enc` appropriately.
 
-**License & Contact**
-- Add a `LICENSE` file to specify the project license.
-- For questions, contact the repository owner or maintainers (see repository settings).
-
-If you want, I can:
-- Add a `CONTRIBUTING.md` and `CHANGELOG.md` template.
-- Add a short architecture diagram or a summary of key services used.
-
---
-Drafter: GitHub Copilot (assisting)
