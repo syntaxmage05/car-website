@@ -1,107 +1,164 @@
-**Lazcar — Car Website**
+<div id="top">
 
-A Ruby on Rails web application (repository: `car-website`) serving as the codebase for the Lazcar platform.
-This document explains how to get the app running locally, run tests and linters, and deploy or contribute to the project.
+<!-- HEADER STYLE: CLASSIC -->
+<div align="center">
 
-**Quick Summary**
-- **Language & framework:** Ruby on Rails
-- **Repository:** `car-website` (owner: `devmuturi`)
-- **Purpose:** Rails web app powering the Lazcar site (frontend, backend, jobs, and background processing)
 
-**Prerequisites**
-- **Ruby:** Use the project's Ruby version (see `Gemfile` / `.ruby-version`).
-- **Bundler:** `gem install bundler`
-- **Node & Yarn / npm:** JavaScript build tools required (see `package.json`).
-- **Database:** The DB is configured in `config/database.yml` (e.g., PostgreSQL, MySQL, or SQLite depending on environment).
-- **Redis / Sidekiq (optional):** If background jobs are used, ensure Redis is available.
+# CAR-WEBSITE
 
-**Local development - Setup**
-1. Install Ruby gems and JavaScript packages:
-```bash
-bundle install
-yarn install # or `npm install` if you use npm
+<em>Drive Your Journey with Confidence and Style</em>
+
+<!-- BADGES -->
+<img src="https://img.shields.io/github/last-commit/syntaxmage05/car-website?style=flat&logo=git&logoColor=white&color=0080ff" alt="last-commit">
+<img src="https://img.shields.io/github/languages/top/syntaxmage05/car-website?style=flat&color=0080ff" alt="repo-top-language">
+<img src="https://img.shields.io/github/languages/count/syntaxmage05/car-website?style=flat&color=0080ff" alt="repo-language-count">
+
+<em>Built with the tools and technologies:</em>
+
+<img src="https://img.shields.io/badge/JSON-000000.svg?style=flat&logo=JSON&logoColor=white" alt="JSON">
+<img src="https://img.shields.io/badge/Markdown-000000.svg?style=flat&logo=Markdown&logoColor=white" alt="Markdown">
+<img src="https://img.shields.io/badge/npm-CB3837.svg?style=flat&logo=npm&logoColor=white" alt="npm">
+<img src="https://img.shields.io/badge/Ruby-CC342D.svg?style=flat&logo=Ruby&logoColor=white" alt="Ruby">
+<img src="https://img.shields.io/badge/esbuild-FFCF00.svg?style=flat&logo=esbuild&logoColor=black" alt="esbuild">
+<br>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat&logo=JavaScript&logoColor=black" alt="JavaScript">
+<img src="https://img.shields.io/badge/Yarn-2C8EBB.svg?style=flat&logo=Yarn&logoColor=white" alt="Yarn">
+<img src="https://img.shields.io/badge/Docker-2496ED.svg?style=flat&logo=Docker&logoColor=white" alt="Docker">
+<img src="https://img.shields.io/badge/GitHub%20Actions-2088FF.svg?style=flat&logo=GitHub-Actions&logoColor=white" alt="GitHub%20Actions">
+
+</div>
+<br>
+
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [Testing](#testing)
+
+---
+
+## Overview
+
+car-website is a feature-rich, Rails-based platform tailored for building scalable vehicle marketplace applications. It combines a modular architecture with modern frontend components, automated deployment, and comprehensive testing to streamline development and maintenance.
+
+**Why car-website?**
+
+This project simplifies creating a robust car dealership web app with:
+
+- 🎨 **🧩 Modular UI Components:** Reusable view components and Stimulus controllers for dynamic, maintainable frontend features.
+- 🚀 **🔧 Seamless Deployment:** Docker setup, environment configurations, and CI workflows for reliable, scalable deployment.
+- 🛠️ **🧪 Automated Testing:** Fixtures, system tests, and CI integration ensure code quality and stability.
+- 🔐 **🔒 Secure & Configurable:** Role-based access, encrypted credentials, and security policies for a safe user experience.
+- 🌐 **📱 Progressive Web App:** PWA support with service workers and real-time messaging for engaging user interactions.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+This project requires the following dependencies:
+
+- **Programming Language:** Ruby
+- **Package Manager:** Bundler, Rake, Npm, Yarn
+- **Container Runtime:** Docker
+
+### Installation
+
+Build car-website from the source and install dependencies:
+
+1. **Clone the repository:**
+
+    ```sh
+    ❯ git clone https://github.com/syntaxmage05/car-website
+    ```
+
+2. **Navigate to the project directory:**
+
+    ```sh
+    ❯ cd car-website
+    ```
+
+3. **Install the dependencies:**
+
+**Using [docker](https://www.docker.com/):**
+
+```sh
+❯ docker build -t syntaxmage05/car-website .
 ```
-2. Configure environment variables.
-- Copy the example env file or create your own: `cp .env.example .env` (if present).
-- Secrets and credentials are stored in `config/credentials.yml.enc`. Edit with:
-```bash
-EDITOR="nano" bin/rails credentials:edit
+**Using [bundler](https://www.ruby-lang.org/):**
+
+```sh
+❯ bundle install
 ```
-3. Create and prepare the database:
-```bash
-bin/rails db:create db:migrate db:seed
+**Using [npm](https://www.npmjs.com/):**
+
+```sh
+❯ npm install
 ```
-4. Run the asset build process (if using the default Rails asset pipeline / webpacker / jsbundling):
-```bash
-bin/rails assets:precompile # or your JS build command (e.g. `bin/webpack`)
+**Using [yarn](https://yarnpkg.com/):**
+
+```sh
+❯ yarn install
 ```
 
-**Start the app (development)**
-- Using the Rails server:
-```bash
-bin/rails server
-```
-- Using the development Procfile (recommended for multi-process setups):
-```bash
-# Uses Foreman/Overmind to run web + worker processes
-bundle exec foreman start -f Procfile.dev
-```
+### Usage
 
-**Docker**
-- Build the image (uses the repository `Dockerfile`):
-```bash
-docker build -t lazcar:dev .
-```
-- Run with the required env vars and ports exposed:
-```bash
-docker run --env-file .env -p 3000:3000 lazcar:dev
-```
-Adjust the commands for your CI/CD or orchestration tooling.
+Run the project with:
 
-**Running tests & quality checks**
-- Run the Rails test suite (Minitest) or RSpec if configured:
-```bash
-bin/rails test         # Minitest
-# or
-bundle exec rspec      # if the project uses RSpec and has a `spec/` dir
+**Using [docker](https://www.docker.com/):**
+
+```sh
+docker run -it {image_name}
 ```
-- Run linters/security checks:
-```bash
-bundle exec rubocop
-bundle exec brakeman -A
+**Using [bundler](https://www.ruby-lang.org/):**
+
+```sh
+bundle exec ruby {entrypoint}
+```
+**Using [npm](https://www.npmjs.com/):**
+
+```sh
+npm start
+```
+**Using [yarn](https://yarnpkg.com/):**
+
+```sh
+yarn start
 ```
 
-**Common maintenance tasks**
-- To edit credentials securely: `bin/rails credentials:edit`.
-- Reset the database (destructive): `bin/rails db:drop db:create db:migrate db:seed`.
-- Run background jobs locally (Sidekiq):
-```bash
-bundle exec sidekiq
+### Testing
+
+Car-website uses the {__test_framework__} test framework. Run the test suite with:
+
+**Using [docker](https://www.docker.com/):**
+
+```sh
+echo 'INSERT-TEST-COMMAND-HERE'
+```
+**Using [bundler](https://www.ruby-lang.org/):**
+
+```sh
+bundle exec rspec
+```
+**Using [npm](https://www.npmjs.com/):**
+
+```sh
+npm test
+```
+**Using [yarn](https://yarnpkg.com/):**
+
+```sh
+yarn test
 ```
 
-**Deployment**
-- The project includes a `Procfile` and `config/puma.rb` for process management and server configuration. Adjust these for your host (Heroku, Dokku, Capistrano, Docker, or Kubernetes).
-- Ensure environment variables and `RAILS_MASTER_KEY` (or `credentials`) are available in the target environment.
+---
 
-**Useful files & locations**
-- `config/database.yml` — database configuration
-- `config/puma.rb` — Puma web server configuration
-- `Procfile` / `Procfile.dev` — process definitions for production/dev
-- `config/credentials.yml.enc` — encrypted credentials (edit with `bin/rails credentials:edit`)
-- `app/` — core application code (controllers, models, views, components)
-- `test/` or `spec/` — test suites
+<div align="left"><a href="#top">⬆ Return</a></div>
 
-**Contributing**
-- Fork the repo and send pull requests against `main`.
-- Follow existing code style and run linters before opening a PR:
-```bash
-bundle exec rubocop
-bundle exec brakeman -A
-```
-- Include tests and update documentation when adding features.
-
-**Troubleshooting**
-- If migrations fail, inspect `db/schema.rb` and your migration files for issues.
-- If assets fail to compile, verify Node/Yarn versions and check `package.json` scripts.
-- If credentials are missing in CI, set `RAILS_MASTER_KEY` or supply `credentials.yml.enc` appropriately.
-
+---
