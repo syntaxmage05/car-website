@@ -1,16 +1,9 @@
-
-
 https://github.com/user-attachments/assets/bd921052-8d25-41da-ad7b-5e02ec028d93
-
-
-
-
 
 <div id="top">
 
 <!-- HEADER STYLE: CLASSIC -->
 <div align="center">
-
 
 # CAR-WEBSITE
 
@@ -23,16 +16,16 @@ https://github.com/user-attachments/assets/bd921052-8d25-41da-ad7b-5e02ec028d93
 
 <em>Built with the tools and technologies:</em>
 
-<img src="https://img.shields.io/badge/JSON-000000.svg?style=flat&logo=JSON&logoColor=white" alt="JSON">
-<img src="https://img.shields.io/badge/Markdown-000000.svg?style=flat&logo=Markdown&logoColor=white" alt="Markdown">
-<img src="https://img.shields.io/badge/npm-CB3837.svg?style=flat&logo=npm&logoColor=white" alt="npm">
 <img src="https://img.shields.io/badge/Ruby-CC342D.svg?style=flat&logo=Ruby&logoColor=white" alt="Ruby">
-<img src="https://img.shields.io/badge/esbuild-FFCF00.svg?style=flat&logo=esbuild&logoColor=black" alt="esbuild">
+<img src="https://img.shields.io/badge/Rails-CC0000.svg?style=flat&logo=Ruby-on-Rails&logoColor=white" alt="Rails">
+<img src="https://img.shields.io/badge/PostgreSQL-4169E1.svg?style=flat&logo=PostgreSQL&logoColor=white" alt="PostgreSQL">
+<img src="https://img.shields.io/badge/Hotwire-FF5F1F.svg?style=flat&logo=hotwire&logoColor=white" alt="Hotwire">
+<img src="https://img.shields.io/badge/Stimulus-77E8B9.svg?style=flat&logo=stimulus&logoColor=black" alt="Stimulus">
 <br>
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat&logo=JavaScript&logoColor=black" alt="JavaScript">
-<img src="https://img.shields.io/badge/Yarn-2C8EBB.svg?style=flat&logo=Yarn&logoColor=white" alt="Yarn">
+<img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4.svg?style=flat&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
+<img src="https://img.shields.io/badge/esbuild-FFCF00.svg?style=flat&logo=esbuild&logoColor=black" alt="esbuild">
 <img src="https://img.shields.io/badge/Docker-2496ED.svg?style=flat&logo=Docker&logoColor=white" alt="Docker">
-<img src="https://img.shields.io/badge/GitHub%20Actions-2088FF.svg?style=flat&logo=GitHub-Actions&logoColor=white" alt="GitHub%20Actions">
+<img src="https://img.shields.io/badge/GitHub%20Actions-2088FF.svg?style=flat&logo=GitHub-Actions&logoColor=white" alt="GitHub Actions">
 
 </div>
 <br>
@@ -42,27 +35,43 @@ https://github.com/user-attachments/assets/bd921052-8d25-41da-ad7b-5e02ec028d93
 ## Table of Contents
 
 - [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Testing](#testing)
+  - [Prerequisites](#prerequisites)
+  - [Quick Start (Local Development)](#quick-start-local-development)
+  - [Running with Docker](#running-with-docker)
+- [Testing & Code Quality](#testing--code-quality)
+- [Environment Variables](#environment-variables)
+- [Deployment](#deployment)
 
 ---
 
 ## Overview
 
-car-website is a feature-rich, Rails-based platform tailored for building scalable vehicle marketplace applications. It combines a modular architecture with modern frontend components, automated deployment, and comprehensive testing to streamline development and maintenance.
+`car-website` is a Rails 8 application for showcasing, managing, and selling vehicles online. It includes an admin workflow for inventory management and a public-facing storefront where visitors can browse listings, compare cars, and send enquiries.
 
-**Why car-website?**
+---
 
-This project simplifies creating a robust car dealership web app with:
+## Features
 
-- 🎨 **🧩 Modular UI Components:** Reusable view components and Stimulus controllers for dynamic, maintainable frontend features.
-- 🚀 **🔧 Seamless Deployment:** Docker setup, environment configurations, and CI workflows for reliable, scalable deployment.
-- 🛠️ **🧪 Automated Testing:** Fixtures, system tests, and CI integration ensure code quality and stability.
-- 🔐 **🔒 Secure & Configurable:** Role-based access, encrypted credentials, and security policies for a safe user experience.
-- 🌐 **📱 Progressive Web App:** PWA support with service workers and real-time messaging for engaging user interactions.
+- 🚗 Inventory management for makes, models, and cars.
+- 🖼️ Multiple image uploads per car using Active Storage.
+- 🔐 Authentication and role-based authorization (Devise + Rolify + Pundit).
+- 🧭 Public catalog with filters and detailed vehicle pages.
+- ⚡ Modern Rails frontend stack with Hotwire, Stimulus, and Tailwind.
+- 📦 Docker-ready deployment flow and CI-friendly project layout.
+
+---
+
+## Tech Stack
+
+- **Backend:** Ruby on Rails 8
+- **Database:** PostgreSQL
+- **Frontend:** Hotwire (Turbo + Stimulus), Tailwind CSS, esbuild
+- **Auth / Access Control:** Devise, Rolify, Pundit
+- **Background Infrastructure:** Solid Queue, Solid Cache, Solid Cable
+- **Deployment:** Docker + Kamal
 
 ---
 
@@ -70,100 +79,100 @@ This project simplifies creating a robust car dealership web app with:
 
 ### Prerequisites
 
-This project requires the following dependencies:
+Install the following tools before running locally:
 
-- **Programming Language:** Ruby
-- **Package Manager:** Bundler, Rake, Npm, Yarn
-- **Container Runtime:** Docker
+- Ruby (compatible with the app's Gemfile / lockfile)
+- Bundler
+- PostgreSQL
+- Node.js + npm or yarn
 
-### Installation
+### Quick Start (Local Development)
 
-Build car-website from the source and install dependencies:
+1. **Clone the repository**
 
-1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/syntaxmage05/car-website.git
+   cd car-website
+   ```
 
-    ```sh
-    ❯ git clone https://github.com/syntaxmage05/car-website
-    ```
+2. **Install dependencies**
 
-2. **Navigate to the project directory:**
+   ```sh
+   bundle install
+   yarn install
+   ```
 
-    ```sh
-    ❯ cd car-website
-    ```
+3. **Set up the database**
 
-3. **Install the dependencies:**
+   ```sh
+   bin/rails db:create
+   bin/rails db:migrate
+   # Optional: load seed data
+   bin/rails db:seed
+   ```
 
-**Using [docker](https://www.docker.com/):**
+4. **Start the development server**
 
-```sh
-❯ docker build -t syntaxmage05/car-website .
-```
-**Using [bundler](https://www.ruby-lang.org/):**
+   ```sh
+   bin/dev
+   ```
 
-```sh
-❯ bundle install
-```
-**Using [npm](https://www.npmjs.com/):**
+5. Open your browser at:
 
-```sh
-❯ npm install
-```
-**Using [yarn](https://yarnpkg.com/):**
+   ```text
+   http://localhost:3000
+   ```
 
-```sh
-❯ yarn install
-```
+### Running with Docker
 
-### Usage
-
-Run the project with:
-
-**Using [docker](https://www.docker.com/):**
+Build and run the project in a container:
 
 ```sh
-docker run -it {image_name}
+docker build -t car-website .
+docker run --rm -p 3000:3000 car-website
 ```
-**Using [bundler](https://www.ruby-lang.org/):**
+
+---
+
+## Testing & Code Quality
+
+Run the default Rails test suite:
 
 ```sh
-bundle exec ruby {entrypoint}
+bin/rails test
 ```
-**Using [npm](https://www.npmjs.com/):**
+
+Run security and lint checks (if configured in your environment):
 
 ```sh
-npm start
+bin/brakeman
+bin/rubocop
 ```
-**Using [yarn](https://yarnpkg.com/):**
+
+---
+
+## Environment Variables
+
+You can configure optional integrations through environment variables (for example WhatsApp contact settings used for enquiries):
+
+```env
+WHATSAPP_PHONE=1234567890
+```
+
+For production, set required secrets using Rails credentials and your deployment environment.
+
+---
+
+## Deployment
+
+This app includes Kamal configuration at `config/deploy.yml`. Typical deployment workflow:
 
 ```sh
-yarn start
+bin/kamal setup
+bin/kamal deploy
 ```
 
-### Testing
-
-Car-website uses the {__test_framework__} test framework. Run the test suite with:
-
-**Using [docker](https://www.docker.com/):**
-
-```sh
-echo 'INSERT-TEST-COMMAND-HERE'
-```
-**Using [bundler](https://www.ruby-lang.org/):**
-
-```sh
-bundle exec rspec
-```
-**Using [npm](https://www.npmjs.com/):**
-
-```sh
-npm test
-```
-**Using [yarn](https://yarnpkg.com/):**
-
-```sh
-yarn test
-```
+Review and customize `config/deploy.yml` before deploying.
 
 ---
 
